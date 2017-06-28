@@ -107,7 +107,7 @@ display_hand(dealer_hand)
 print('Your hand is ', player_hand)
 print("Dealer's face-up card is", dealer_hand[0]) #player only sees one card at the beginning
 
-#right after 2 cards are dealt, check if anyone one off the bat.
+#right after 2 cards are dealt, check if anyone won off the bat.
 #if player has 21, (a ten and an ace), player wins
 #if dealer has 21, (a ten and an ace), dealer wins
 #if both player and dealer has 21, tie; player loses no money
@@ -116,9 +116,11 @@ player_score = score_after_deal(player_hand[0], player_hand[1])
 dealer_score = score_after_deal(dealer_hand[0], dealer_hand[1])
 
 if player_score == 21 and dealer_score != 21:
-    print('You win! Your money increase to: ', player.addMoney())
+    player.money = player.addMoney()
+    print('You win! Your money increase to: ', player.money)
 elif dealer_score == 21 and player_score != 21:
-    print('You lost this round. You money decrease to: ', player.loseMoney())
+    player.money = player.loseMoney()
+    print('You lost this round. You money decrease to: ', player.money)
 elif dealer_score == 21 and player_score == 21:
     print("It's a tie. You did not win or lose any money")
 else:
